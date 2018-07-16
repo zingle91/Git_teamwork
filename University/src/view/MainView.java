@@ -22,9 +22,6 @@ public class MainView extends JFrame {
 	private JTextField textField;
 
 
-	/**
-	 * Create the frame.
-	 */
 	public MainView() {
 		setResizable(false);
 		setTitle("University");
