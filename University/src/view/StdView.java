@@ -38,7 +38,7 @@ public class StdView extends JFrame {
 		
 		mPane.add(tab_Std);
 		
-		JPanel register = new JPanel();
+		RegistView register = new RegistView();
 		tab_Std.addTab("수강 신청", null, register, null);
 		
 
