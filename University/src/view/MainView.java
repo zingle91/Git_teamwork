@@ -24,7 +24,7 @@ public class MainView extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfStdnum;
 	
-	JButton login;
+	JButton login, admin;
 
 
 	/**
@@ -46,10 +46,13 @@ public class MainView extends JFrame {
 		panel.setBorder(new TitledBorder(null, "\uD559\uC0DD", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel);
 		
+		
+		// 학번 입력 textfield
 		tfStdnum = new JTextField();
 		panel.add(tfStdnum);
 		tfStdnum.setColumns(10);
 		
+		// 입력된 학번을 가지고 로그인 하는 버튼
 		login = new JButton("로그인");
 		panel.add(login);
 		
@@ -57,8 +60,8 @@ public class MainView extends JFrame {
 		panel_1.setBorder(new TitledBorder(null, "\uAD00\uB9AC\uC790", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel_1);
 		
-		JButton btnNewButton = new JButton("관리자로 로그인");
-		panel_1.add(btnNewButton);
+		admin = new JButton("관리자로 로그인");
+		panel_1.add(admin);
 		
 		
 		
@@ -66,29 +69,49 @@ public class MainView extends JFrame {
 		eventProc();
 	}
 
+	// Univ_Main 가리기
 	public void semiclose() {
 		setVisible(false);
 	}
 	
-	
+	// 학생 로그인 및 관리자 로그인 이벤트
 	public void eventProc() {
 		EvtHdlr hdlr = new EvtHdlr();
 		login.addActionListener(hdlr);
+		admin.addActionListener(hdlr);
 	}
 	
+	// StdView 생성 메소드
+	public void createStdView() {
+		String sNum = null;
+		sNum = tfStdnum.getText();
+		// StdView 생성 시 학번, MainView 클래스 주소를 인자로 넘김
+		StdView frame = new StdView(sNum,this);
+		frame.setVisible(true);
+		JOptionPane.showMessageDialog(null,"입력한 학번 : " + sNum);
+	}
+	
+	public void createManagerView() {
+		ManagerView frame = new ManagerView(this);
+		frame.setVisible(true);
+		JOptionPane.showMessageDialog(null,"관리 모드 진입");
+	}
 	
 	class EvtHdlr implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object btn = e.getSource();
+			// 학번 입력하고 로그인 누름
 			if(btn == login) {
-				String sNum = null;
-				sNum = tfStdnum.getText();
-				StdView frame = new StdView(sNum);
-				frame.setVisible(true);
 				semiclose();
-				JOptionPane.showMessageDialog(null,"입력한 학번 : " + sNum);
+				createStdView();
+			
+			
+			}else if(btn == admin) {
+				semiclose();
+				createManagerView();
+				
 			}
 			
 		}
