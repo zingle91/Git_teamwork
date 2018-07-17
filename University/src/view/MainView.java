@@ -92,7 +92,7 @@ public class MainView extends JFrame {
 	}
 	
 	public void createManagerView() {
-		ManagerView frame = new ManagerView();
+		ManagerView frame = new ManagerView(this);
 		frame.setVisible(true);
 		JOptionPane.showMessageDialog(null,"관리 모드 진입");
 	}
@@ -104,13 +104,14 @@ public class MainView extends JFrame {
 			Object btn = e.getSource();
 			// 학번 입력하고 로그인 누름
 			if(btn == login) {
-				
-				createStdView();
 				semiclose();
+				createStdView();
+			
 			
 			}else if(btn == admin) {
-				createManagerView();
 				semiclose();
+				createManagerView();
+				
 			}
 			
 		}

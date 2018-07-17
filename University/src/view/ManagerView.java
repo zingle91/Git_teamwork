@@ -29,23 +29,23 @@ public class ManagerView extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManagerView frame = new ManagerView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					ManagerView frame = new ManagerView();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public ManagerView() {
+	public ManagerView(MainView m) {
 		setTitle("관리모드");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -62,15 +62,13 @@ public class ManagerView extends JFrame {
 		tab_manager.addTab("학생", null, std1, null);
 		std1.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JPanel subject = new JPanel();
+		Manager_Sbj subject = new Manager_Sbj(m,this);
 		tab_manager.addTab("과목", null, subject, null);
 		
 		ManagerPanel.add(tab_manager);
 		setContentPane(ManagerPanel);
 		
 		
-		
-
 		
 		
 		setSize(1000,600);
