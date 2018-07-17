@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
+import model.SubjectModel;
 import vo.SubjectVO;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
@@ -39,9 +40,12 @@ public class RegistView extends JPanel {
 
 	avaiSubModel avaiModel;
 	registListModel registModel;
+	
+	SubjectModel dbSub;
 
 	public RegistView() {
 		setLayout(new GridLayout(1, 2, 0, 0)); //전체 1행2열(왼쪽,오른쪽영역)
+		connectDB();
 
 		west = new JPanel();
 		add(west);
@@ -201,6 +205,14 @@ public class RegistView extends JPanel {
 		east_center.add(new JScrollPane(avaiSubTable));
 
 		eventProc();
+	}
+	private void connectDB() {
+		try {
+			dbSub=new SubjectModel();
+			System.out.println("소영 디비 연결 성공");
+		}catch(Exception e){
+			System.out.println("소영 디비 연결 실패 : "+ e.getMessage());
+		}	
 	}
 	public void eventProc() {
 		ButtonEventHandler btnHandler = new ButtonEventHandler();
