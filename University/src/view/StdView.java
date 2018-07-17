@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 import java.awt.GridLayout;
-
+/*
+ * 학생모드로 로그인했을시 화면
+ */
 public class StdView extends JFrame {
 
 	private JPanel mPane;
@@ -34,9 +36,9 @@ public class StdView extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		mPane.add(tabbedPane);
 		
-		JPanel register = new JPanel();
+		RegistView register = new RegistView();
 		tabbedPane.addTab("수강 신청", null, register, null);
-		
+	//	tabbedPane.addTab(title, icon, component, tip);
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("신청 내역", null, panel_1, null);
 		
