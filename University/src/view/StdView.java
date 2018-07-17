@@ -12,13 +12,15 @@ import java.awt.GridLayout;
 public class StdView extends JFrame {
 
 	private JPanel mPane;
+	MainView parent;
 
 	
 
 	/**
 	 * Create the frame.
 	 */
-	public StdView(String sNum) {
+	public StdView(String sNum, MainView p) {
+		parent = p;
 		// 로그인 시 입력한 학번 : sNum
 		// if 있는 학번 -> 아래 내용
 		// if 없는 학번 -> exit

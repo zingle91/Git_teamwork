@@ -46,10 +46,13 @@ public class MainView extends JFrame {
 		panel.setBorder(new TitledBorder(null, "\uD559\uC0DD", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		contentPane.add(panel);
 		
+		
+		// 학번 입력 textfield
 		tfStdnum = new JTextField();
 		panel.add(tfStdnum);
 		tfStdnum.setColumns(10);
 		
+		// 입력된 학번을 가지고 로그인 하는 버튼
 		login = new JButton("로그인");
 		panel.add(login);
 		
@@ -76,6 +79,11 @@ public class MainView extends JFrame {
 		login.addActionListener(hdlr);
 	}
 	
+	// StdView 생성 메소드
+	public void createStdView(String sNum) {
+		StdView frame = new StdView(sNum,this);
+		frame.setVisible(true);
+	}
 	
 	class EvtHdlr implements ActionListener{
 
@@ -85,8 +93,7 @@ public class MainView extends JFrame {
 			if(btn == login) {
 				String sNum = null;
 				sNum = tfStdnum.getText();
-				StdView frame = new StdView(sNum);
-				frame.setVisible(true);
+				createStdView(sNum);
 				semiclose();
 				JOptionPane.showMessageDialog(null,"입력한 학번 : " + sNum);
 			}
