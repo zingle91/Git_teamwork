@@ -65,6 +65,11 @@ public class MainView extends JFrame {
 		// 이벤트
 		eventProc();
 	}
+
+	public void semiclose() {
+		setVisible(false);
+	}
+	
 	
 	public void eventProc() {
 		EvtHdlr hdlr = new EvtHdlr();
@@ -82,6 +87,7 @@ public class MainView extends JFrame {
 				sNum = tfStdnum.getText();
 				StdView frame = new StdView(sNum);
 				frame.setVisible(true);
+				semiclose();
 				JOptionPane.showMessageDialog(null,"입력한 학번 : " + sNum);
 			}
 			
