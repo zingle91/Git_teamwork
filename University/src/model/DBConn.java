@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConn {
 	static Connection con;
-	String url = "jdbc:oracle:thin:@172.16.3.10:1521:orcl";
+	String url = "jdbc:oracle:thin:@goott-3-11-PC:1521:orcl";
 	String user = "scott";
 	String pass = "tiger";
 

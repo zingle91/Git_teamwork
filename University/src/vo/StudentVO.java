@@ -1,14 +1,14 @@
 package vo;
 
 public class StudentVO {
-	private String student_id;
+	private String studentid;
 	private String college;
 	private String name;
 	private int complete;
 	private String major;
 	
-	public String getStudent_id() {
-		return student_id;
+	public String getStudentid() {
+		return studentid;
 	}
 	public String getCollege() {
 		return college;
@@ -22,8 +22,8 @@ public class StudentVO {
 	public String getMajor() {
 		return major;
 	}
-	public void setStudent_id(String student_id) {
-		this.student_id = student_id;
+	public void setStudent_id(String studentid) {
+		this.studentid = studentid;
 	}
 	public void setCollege(String college) {
 		this.college = college;

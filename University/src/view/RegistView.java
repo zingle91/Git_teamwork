@@ -7,19 +7,18 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 import model.SubjectModel;
 import vo.SubjectVO;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
 
 
 /*
@@ -27,13 +26,13 @@ import javax.swing.JTextField;
  */
 public class RegistView extends JPanel {
 	JPanel west,east,west_center,west_south, west_south1,west_south2,east_north,east_north1,east_north2,
-	east_center,society,engineering,art,culture; 
+	east_center,science,engineering,art,culture; 
 	JLabel lblNewLabel,lblNewLabel_1,lblNewLabel_4,lblNewLabel_3,lblNewLabel_2,lblNewLabel_6,lblNewLabel_7,lblNewLabel_8;
 	JTextField tf0_0,tf0_1,tf0_2,tf1_0,tf1_1,tf1_2,tf2_0,tf2_1,tf2_2,tf3_0,tf3_1,tf3_2;
 
 	JTabbedPane tabbedPane;
 
-	JButton society_btn1,society_btn2,engineering_btn1,engineering_btn2,art_btn1,art_btn2,culture_btn1,culture_btn2,
+	JButton science_btn1,science_btn2,engineering_btn1,engineering_btn2,art_btn1,art_btn2,culture_btn1,culture_btn2,
 	confirmBtn,scoreSearchBtn,logoutBtn,plusbtn;
 
 	JTable avaiSubTable;
@@ -166,12 +165,12 @@ public class RegistView extends JPanel {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		east_north.add(tabbedPane);
 
-		society = new JPanel();
-		tabbedPane.addTab("사회대", null, society, null);
-		society_btn1 = new JButton("국어국문학과");
-		society.add(society_btn1);
-		society_btn2 = new JButton("영어영문학과");
-		society.add(society_btn2);
+		science = new JPanel();
+		tabbedPane.addTab("자연과학대", null, science, null);
+		science_btn1 = new JButton("물리학과");
+		science.add(science_btn1);
+		science_btn2 = new JButton("생명과학과");
+		science.add(science_btn2);
 
 		engineering = new JPanel();
 		tabbedPane.addTab("공과대", null, engineering, null);
@@ -217,8 +216,8 @@ public class RegistView extends JPanel {
 	public void eventProc() {
 		ButtonEventHandler btnHandler = new ButtonEventHandler();
 		// 이벤트 등록
-		society_btn1.addActionListener(btnHandler);
-		society_btn2.addActionListener(btnHandler);
+		science_btn1.addActionListener(btnHandler);
+		science_btn2.addActionListener(btnHandler);
 		engineering_btn1.addActionListener(btnHandler);
 		engineering_btn2.addActionListener(btnHandler);
 		art_btn1.addActionListener(btnHandler);
@@ -230,17 +229,26 @@ public class RegistView extends JPanel {
 	class ButtonEventHandler implements ActionListener{
 		public void actionPerformed(ActionEvent ev){
 			Object o = ev.getSource();
-			//	SubjectVO sub=new SubjectVO();
-
-			if(o==society_btn1){  
-				//avaiModel.data=data;
-				avaiSubTable.setModel(avaiModel);
-				avaiModel.fireTableDataChanged(); 
+			SubjectVO dao=new SubjectVO();
+			ArrayList list1=new ArrayList();
+			
+			if(o==science_btn1){  
+				try {
+					list1=dbSub.getSubData("국어국문학과");
+					avaiModel.data=list1;
+					avaiModel.fireTableDataChanged();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
 			}
-			else if(o==society_btn2){ 
-				//avaiModel.data=data;
-				avaiSubTable.setModel(avaiModel);
-				avaiModel.fireTableDataChanged(); 
+			else if(o==science_btn2){ 
+				try {
+					list1=dbSub.getSubData("영어영문학과");
+					avaiModel.data=list1;	
+					avaiModel.fireTableDataChanged(); 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}			
 			else  if(o==engineering_btn1){ 
 				//avaiModel.data=data;
@@ -276,13 +284,15 @@ public class RegistView extends JPanel {
 				avaiModel.fireTableDataChanged(); 
 			}
 		}
+
 	}
 
 	//테이블 모델
 	class avaiSubModel extends AbstractTableModel{
-		String[] colName = {"학수번호","강좌명","강의시간","정원","교수명","학점","신청"};
+		String[] colName = {"학수번호","과목명","학점","교수","장소","시작시간","종료시간",
+				"구분","정원","신청인원","학과","개설학기"};
 		ArrayList data=new ArrayList(); //과목의 각 컬럼들 가져오기
-
+		
 		public int getColumnCount() {
 			return colName.length;
 		}
@@ -300,7 +310,8 @@ public class RegistView extends JPanel {
 		}
 	}
 	class registListModel extends AbstractTableModel{
-		String[] colName = {"학수번호","강좌명","강의시간","정원","교수명","학점","신청"};
+		String[] colName = {"학수번호","과목명","학점","교수","장소","시작시간","종료시간",
+				"구분","정원","신청인원","학과","개설학기"};
 		ArrayList data=new ArrayList(); //과목의 각 컬럼들 가져오기
 
 		public int getColumnCount() {
@@ -321,3 +332,12 @@ public class RegistView extends JPanel {
 	}
 
 }
+/*할것
+ * 테이블 간격 바꾸기
+ * 추가버튼만들기
+ * 추가누르면 registListModel에 데이터 출력하기
+ * registListModel에 있는것들 가지고 남은학점 연산 해서 textfield에 출력! 
+ * 신청/추가 버튼
+ */
+
+
