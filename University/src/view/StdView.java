@@ -24,7 +24,7 @@ public class StdView extends JFrame {
 		// 로그인 시 입력한 학번 : sNum
 		// if 있는 학번 -> 아래 내용
 		// if 없는 학번 -> exit
-		
+	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -36,9 +36,9 @@ public class StdView extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		mPane.add(tabbedPane);
 		
-		RegistView register = new RegistView();
+		RegistView register = new RegistView(sNum);
 		tabbedPane.addTab("수강 신청", null, register, null);
-	//	tabbedPane.addTab(title, icon, component, tip);
+		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("신청 내역", null, panel_1, null);
 		

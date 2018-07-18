@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class DBConn {
 	static Connection con;
-	String url = "jdbc:oracle:thin:@goott-3-11-PC:1521:orcl";
-	String user = "scott";
-	String pass = "tiger";
+	String url = "jdbc:oracle:thin:@172.16.3.9:1521:orcl";
+	String user = "jkj";
+	String pass = "jkj";
 
 	private DBConn() throws Exception{
 		//1.드라이버 로딩
