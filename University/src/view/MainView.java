@@ -86,7 +86,7 @@ public class MainView extends JFrame {
 		String sNum = null;
 		sNum = tfStdnum.getText();
 		// StdView 생성 시 학번, MainView 클래스 주소를 인자로 넘김
-		StdView frame = new StdView(sNum,this);
+		StdView frame = new StdView(sNum);
 		frame.setVisible(true);
 		JOptionPane.showMessageDialog(null,"입력한 학번 : " + sNum);
 	}
