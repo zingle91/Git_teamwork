@@ -13,7 +13,8 @@ public class SubjectVO {
 	private int applyNum; //신청인원
 	private String major; //학과
 	private int openSemester;//개설학기
-	
+
+	public Boolean click=new Boolean(false);
 	
 	public String getSubjectId() {
 		return subjectId;
